@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo "triggering script"
-node /root/eddi-start/test.js
+node /root/eddi-controls/initialize.js
