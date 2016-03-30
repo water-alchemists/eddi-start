@@ -28,13 +28,13 @@ start(){
 
 	fi
 
-	/root/eddi-sensors/bin/sensors > dev/null 2>&1 &
+	/root/eddi-sensors/bin/sensors &
 	SENSORS_PPID=$!
 	echo "eddi-sensors now started on process : $SENSORS_PPID" >> $LOG_PATH
-	cd /root/eddi-persist && npm start > dev/null 2>&1 &
+	cd /root/eddi-persist && npm start &
 	PERSIST_PPID=$!
 	echo "eddi-persist now started on process : $PERSIST_PPID" >> $LOG_PATH
-	cd /root/eddi-controls && npm start > dev/null 2>&1 &
+	cd /root/eddi-controls && npm start &
 	CONTROLS_PPID=$!
 	echo "eddi-controls now started on process : $CONTROLS_PPID" >> $LOG_PATH
 
