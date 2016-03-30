@@ -1,7 +1,7 @@
 #! /bin/bash
 #chkconfig: - 99 10
 
-echo "triggered initialize script $date" >> /root/hello.txt
+echo "triggered initialize script $date" > /root/hello.txt
 
 start(){
 	node /root/eddi-controls/initialize.js
