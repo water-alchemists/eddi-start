@@ -28,9 +28,12 @@ start(){
 
 	fi
 
-	SENSORS_PPID=$( /root/eddi-sensors/bin/sensors &; echo "eddi-sensors now started" >> $LOG_PATH; echo "$PPID"; )
-	PERSIST_PPID=$( cd /root/eddi-persist && npm start;echo "eddi-persist now started" >> $LOG_PATH; echo "$PPID"; )
-	CONTROLS_PPID=$( cd /root/eddi-controls && npm start; && echo "eddi-controls now started" >> $LOG_PATH; echo "$PPID" )
+	SENSORS_PPID=$( /root/eddi-sensors/bin/sensors &; echo "$PPID"; )
+	echo "eddi-sensors now started on process : $SENSORS_PPID" >> $LOG_PATH
+	PERSIST_PPID=$( cd /root/eddi-persist && npm start &; echo "$PPID"; )
+	echo "eddi-persist now started on process : $PERSIST_PPID" >> $LOG_PATH
+	CONTROLS_PPID=$( cd /root/eddi-controls && npm start &;  echo "$PPID" )
+	echo "eddi-controls now started on process : $CONTROLS_PPID" >> $LOG_PATH
 
 	echo "triggered initialize script $d" >> $LOG_PATH
 	exit 0
@@ -47,8 +50,11 @@ case "$1" in
 	start)
 		start
 		;;
+	stop)
+		stop
+		;;
 	*)
-		echo "Usage:$0 {start}"
+		echo "Usage:$0 {start|stop}"
 esac
 
 exit 0
