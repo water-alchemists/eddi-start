@@ -28,9 +28,9 @@ start(){
 
 	fi
 
-	{ /root/eddi-sensors/bin/sensors &; echo "eddi-sensors now started" >> $LOG_PATH; SENSORS_PPID=$PPID }
-	{ cd /root/eddi-persist && npm start;echo "eddi-persist now started" >> $LOG_PATH; PERSIST_PPID=$PPID }
-	{ cd /root/eddi-controls && npm start; && echo "eddi-controls now started" >> $LOG_PATH; CONTROLS_PPID=$PPID }
+	SENSORS_PPID=$( /root/eddi-sensors/bin/sensors &; echo "eddi-sensors now started" >> $LOG_PATH; echo "$PPID"; )
+	PERSIST_PPID=$( cd /root/eddi-persist && npm start;echo "eddi-persist now started" >> $LOG_PATH; echo "$PPID"; )
+	CONTROLS_PPID=$( cd /root/eddi-controls && npm start; && echo "eddi-controls now started" >> $LOG_PATH; echo "$PPID" )
 
 	echo "triggered initialize script $d" >> $LOG_PATH
 	exit 0
