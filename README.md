@@ -8,8 +8,8 @@ Start up script to run on the Artik
 2. Remove any prior verisions of this script
   ```
   //do this to remove a previous one that exists
-  rm -y /etc/init.d/initialize 
   chkconfig --del initialize 
+  rm -y /etc/init.d/initialize 
   ```
 
 3. Add the script to ```/etc/init.d``` and the register with ```chkconfig```
