@@ -33,9 +33,9 @@ start(){
 }
 
 stop(){
-	echo "eddi-sensors process $SENSORS_PPID ended" >> $LOG_PATH
-	echo "eddi-persist process $PERSIST_PPID ended" >> $LOG_PATH
-	echo "eddi-controls process $CONTROLS_PPID ended" >> $LOG_PATH
+	echo "eddi-sensors process ended" >> $LOG_PATH
+	echo "eddi-persist process ended" >> $LOG_PATH
+	echo "eddi-controls process ended" >> $LOG_PATH
 
 }
 

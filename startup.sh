@@ -1,5 +1,5 @@
 #!/bin/sh
-LOG_PATH=/root/hello.txt
+LOG_PATH=/root/forever.txt
 
 echo "triggering startup script"
 /root/eddi-sensors/bin/sensors >> $LOG_PATH
