@@ -1,10 +1,11 @@
-#! /bin/bash
+#!/bin/bash
 #chkconfig: - 99 10
 LOG_PATH=/root/hello.txt
 
 start(){
 	SENSORS_PATH=/root/eddi-sensors/bin/sensors
 	STARTUP_SCRIPT=/root/eddi-start/startup.sh
+	SETTER_SCRIPT=/root/eddi-start/setter.sh
 	DHCLIENT="dhclient"
 	d=$(date +"%m-%d-%y %H:%M")
 	node /root/eddi-controls/initialize.js
@@ -26,9 +27,14 @@ start(){
 
 	fi
 
+	chmod +x $SETTER_SCRIPT
+	$SETTER_SCRIPT
+
+	EDDI_ID=$(printenv EDDI_ID)
+	echo "triggered initialize script $d for eddi $EDDI_ID" >> $LOG_PATH
+
 	chmod +x $STARTUP_SCRIPT
 	$STARTUP_SCRIPT
-	echo "triggered initialize script $d" >> $LOG_PATH
 
 }
 
