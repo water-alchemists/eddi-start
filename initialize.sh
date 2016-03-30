@@ -17,18 +17,16 @@ start(){
 		( make -C /root/eddi-sensors && echo "eddi-sensors is now made" >> $LOG_PATH)
 	fi
 
-	if [ ps -ef | grep $DHCLIENT]
-	then
-		echo "wifi was already started" >> $LOG_PATH
-	else
-		echo "wifi was not started" >> $LOG_PATH
-		eval "$DHCLIENT wlan0"
-		echo "wifi was now started" >> $LOG_PATH
+	# if [ ps -ef | grep $DHCLIENT]
+	# then
+	# 	echo "wifi was already started" >> $LOG_PATH
+	# else
+	# 	echo "wifi was not started" >> $LOG_PATH
+	# 	eval "$DHCLIENT wlan0"
+	# 	echo "wifi was now started" >> $LOG_PATH
 
-	fi
+	# fi
 
-	chmod +x $SETTER_SCRIPT
-	$SETTER_SCRIPT
 
 	EDDI_ID=$(printenv EDDI_ID)
 	echo "triggered initialize script $d for eddi $EDDI_ID" >> $LOG_PATH
