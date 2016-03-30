@@ -4,6 +4,7 @@ LOG_PATH=/root/hello.txt
 
 start(){
 	SENSORS_PATH=/root/eddi-sensors/bin/sensors
+	STARTUP_SCRIPT=/root/eddi-start/startup.sh
 	DHCLIENT="dhclient"
 	d=$(date +"%m-%d-%y %H:%M")
 	node /root/eddi-controls/initialize.js
@@ -25,15 +26,8 @@ start(){
 
 	fi
 
-	/root/eddi-sensors/bin/sensors
-	SENSOR_STATUS=$?
-	echo "eddi-sensors now started. status $SENSOR_STATUS" >> $LOG_PATH
-	node /root/eddi-persist/index.js
-	PERSIST_STATUS=$?
-	echo "eddi-persist now started. status $PERSIST_STATUS" >> $LOG_PATH
-	node /root/eddi-controls/index.js
-	CONTROLS_STATUS=$?
-	echo "eddi-controls now started. status $CONTROLS_STATUS" >> $LOG_PATH
+	chmod +x $STARTUP_SCRIPT
+	$STARTUP_SCRIPT
 	echo "triggered initialize script $d" >> $LOG_PATH
 
 }
