@@ -1,9 +1,9 @@
 #! /bin/bash
 #chkconfig: - 99 10
 LOG_PATH=/root/hello.txt
-SENSORS_PPID=''
-PERSIST_PPID=''
-CONTROLS_PPID=''
+SENSORS_PPID=""
+PERSIST_PPID=""
+CONTROLS_PPID=""
 
 start(){
 	SENSORS_PATH=/root/eddi-sensors/bin/sensors
@@ -28,22 +28,22 @@ start(){
 
 	fi
 
-	SENSORS_PPID=$( /root/eddi-sensors/bin/sensors &; echo "$PPID"; )
+	SENSORS_PPID=$( /root/eddi-sensors/bin/sensors &; echo "$PPID")
 	echo "eddi-sensors now started on process : $SENSORS_PPID" >> $LOG_PATH
-	PERSIST_PPID=$( cd /root/eddi-persist && npm start &; echo "$PPID"; )
+	PERSIST_PPID=$( cd /root/eddi-persist && npm start &; echo "$PPID")
 	echo "eddi-persist now started on process : $PERSIST_PPID" >> $LOG_PATH
 	CONTROLS_PPID=$( cd /root/eddi-controls && npm start &;  echo "$PPID" )
 	echo "eddi-controls now started on process : $CONTROLS_PPID" >> $LOG_PATH
 
 	echo "triggered initialize script $d" >> $LOG_PATH
-	exit 0
+
 }
 
 stop(){
 	echo "eddi-sensors process $SENSORS_PPID ended" >> $LOG_PATH
 	echo "eddi-persist process $PERSIST_PPID ended" >> $LOG_PATH
 	echo "eddi-controls process $CONTROLS_PPID ended" >> $LOG_PATH
-	exit 0
+
 }
 
 case "$1" in
