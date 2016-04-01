@@ -1,5 +1,5 @@
 # EDDI Startup Script
-Start up script to run on the Artik
+Start up script to run on the Artik. It will initialize all the digital pins and start sensors, controls and the persist services.
 
 ## Setup after download
 1. Make the startup script an executable
